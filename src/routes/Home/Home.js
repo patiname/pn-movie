@@ -7,23 +7,15 @@ const Main = styled.section`
   width: 100%;
   height: 900px;
   background-color: #333;
+  background-size: cover;
+  background-position: top;
 `;
 
 export const Home = () => {
   const [nowPlay, setNowPlay] = useState();
   const [pop, setPop] = useState();
-
-  // const movieData = async () => {
-  //   // console.log(await moviesApi.nowPlaying());
-  //   const {
-  //     data: { results },
-  //   } = await moviesApi.nowPlaying();
-  //   // setNowPlaying(results);
-  //   // console.log(results);
-  // };
-  // movieData();
-
-  /* console.log(nowPlaying); */
+  const [coming, setComing] = useState();
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const movieData = async () => {
@@ -37,6 +29,13 @@ export const Home = () => {
           data: { results: popular },
         } = await moviesApi.popular();
         setPop(popular);
+
+        const {
+          data: { results: coming },
+        } = await moviesApi.upcoming();
+        setComing(coming);
+
+        setLoading(false);
       } catch (error) {
         console.log(error);
       }
@@ -44,14 +43,27 @@ export const Home = () => {
     movieData();
   }, []);
 
-  console.log("현재상영", nowPlay);
-  console.log("인기", pop);
+  // console.log("현재상영", nowPlay);
+  // console.log("인기", pop);
+  // console.log("상영예정", coming);
 
   return (
     <div>
-      <Main></Main>
+      {loading ? (
+        "loading..."
+      ) : (
+        <div>
+          {pop ? (
+            <Main
+              style={{
+                backgroundImage: `url(https://image.tmdb.org/t/p/original${pop[0].backdrop_path})`,
+              }}
+            ></Main>
+          ) : null}
 
-      <Section>홈 컨텐츠</Section>
+          <Section>홈 컨텐츠</Section>
+        </div>
+      )}
     </div>
   );
 };
