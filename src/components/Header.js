@@ -13,6 +13,9 @@ const SHeader = styled.header`
   top: 0;
   left: 0;
   background-color: ${(props) => props.bg};
+  @media screen and (max-width: 500px) {
+    padding: 0 15px;
+  }
 `;
 
 const Logo = styled.div`

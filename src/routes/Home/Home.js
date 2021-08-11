@@ -55,7 +55,7 @@ export const Home = () => {
             <PageError />
           ) : (
             <div>
-              {pop ? <Main pop={pop[1]} /> : null}
+              {pop ? <Main pop={pop[3]} /> : null}
 
               <Section>
                 <Content title="현재 상영 영화" nowPlay={nowPlay} />

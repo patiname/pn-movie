@@ -8,16 +8,26 @@ const Title = styled.h3`
   font-size: 40px;
   font-weight: 700;
   margin-bottom: 30px;
+  @media screen and (max-width: 500px) {
+    font-size: 25px;
+  }
 `;
 
 const Container = styled.div`
   margin-top: 100px;
+  @media screen and (max-width: 500px) {
+    margin-top: 50px;
+  }
 `;
 
 const MovieTitle = styled.h3`
   font-size: 18px;
   font-weight: 500;
   margin-top: 20px;
+  @media screen and (max-width: 500px) {
+    font-size: 15px;
+    margin-top: 10px;
+  }
 `;
 
 const CoverImg = styled.div`
@@ -25,6 +35,9 @@ const CoverImg = styled.div`
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+  @media screen and (max-width: 500px) {
+    height: 100px;
+  }
 `;
 
 SwiperCore.use([Navigation]);
@@ -33,6 +46,16 @@ export const Content = ({ title, nowPlay }) => {
   const params = {
     spaceBetween: 20,
     slidesPerView: 5.3,
+    breakpoints: {
+      1024: {
+        spaceBetween: 20,
+        slidesPerView: 5.3,
+      },
+      320: {
+        spaceBetween: 10,
+        slidesPerView: 2.2,
+      },
+    },
   };
 
   return (

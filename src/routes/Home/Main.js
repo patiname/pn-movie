@@ -7,6 +7,10 @@ const SMain = styled.section`
   background-size: cover;
   background-position: top;
   padding: 300px 0 0 80px;
+  @media screen and (max-width: 500px) {
+    height: 60vh;
+    padding: 200px 0 0 15px;
+  }
 `;
 
 const TitleWrap = styled.div`
@@ -17,6 +21,9 @@ const Title = styled.h3`
   font-size: 100px;
   font-weight: 700;
   margin-bottom: 30px;
+  @media screen and (max-width: 500px) {
+    font-size: 50px;
+  }
 `;
 
 const Desc = styled.p`
@@ -25,6 +32,11 @@ const Desc = styled.p`
   font-size: 20px;
   line-height: 30px;
   font-weight: 400;
+  @media screen and (max-width: 500px) {
+    width: 90%;
+    font-size: 16px;
+    line-height: 22px;
+  }
 `;
 
 export const Main = ({ pop }) => {
