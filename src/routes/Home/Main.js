@@ -24,7 +24,7 @@ const Desc = styled.p`
   width: 100%;
   font-size: 20px;
   line-height: 30px;
-  font-weight: 300;
+  font-weight: 400;
 `;
 
 export const Main = ({ pop }) => {

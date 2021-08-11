@@ -1,39 +1,10 @@
-import styled from "styled-components";
 import { Section } from "../../components/Section";
 import { moviesApi } from "../../api";
 import { useEffect, useState } from "react";
 import { PageLoading } from "../../components/PageLoading";
 import { Main } from "./Main";
 import { PageError } from "./PageError";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "../../styles/swiper.css";
-import SwiperCore, { Navigation } from "swiper";
-import { Link } from "react-router-dom";
-
-const Title = styled.h3`
-  font-size: 40px;
-  font-weight: 700;
-  margin-bottom: 30px;
-`;
-
-const Container = styled.div`
-  margin-top: 100px;
-`;
-
-const MovieTitle = styled.h3`
-  font-size: 18px;
-  font-weight: 500;
-  margin-top: 20px;
-`;
-
-const CoverImg = styled.div`
-  height: 180px;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-`;
-
-SwiperCore.use([Navigation]);
+import { Content } from "./Content";
 
 export const Home = () => {
   const [nowPlay, setNowPlay] = useState();
@@ -41,11 +12,6 @@ export const Home = () => {
   const [coming, setComing] = useState();
   const [loading, setLoading] = useState(true);
   const [pageError, setPageError] = useState(false);
-
-  const params = {
-    spaceBetween: 20,
-    slidesPerView: 5.3,
-  };
 
   useEffect(() => {
     const movieData = async () => {
@@ -91,24 +57,9 @@ export const Home = () => {
               {pop ? <Main pop={pop[1]} /> : null}
 
               <Section>
-                <Container>
-                  <Title>현재 상영 영화</Title>
-                  <Swiper {...params} navigation>
-                    {nowPlay &&
-                      nowPlay.map((play) => (
-                        <SwiperSlide key={play.id}>
-                          <Link to={{ pathname: "#" }}>
-                            <CoverImg
-                              style={{
-                                backgroundImage: `url(https://image.tmdb.org/t/p/original${play.backdrop_path})`,
-                              }}
-                            />
-                            <MovieTitle>{play.title}</MovieTitle>
-                          </Link>
-                        </SwiperSlide>
-                      ))}
-                  </Swiper>
-                </Container>
+                <Content title="현재 상영 영화" nowPlay={nowPlay} />
+                <Content title="상영 예정" nowPlay={coming} />
+                <Content title="인기 영화" nowPlay={pop} />
               </Section>
             </div>
           )}
