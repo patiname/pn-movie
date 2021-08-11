@@ -10,7 +10,7 @@ const SMain = styled.section`
 `;
 
 const TitleWrap = styled.div`
-  mix-blend-mode: difference;
+  text-shadow: 0 0 10px rgba(0 0 0 / 70%);
 `;
 
 const Title = styled.h3`
