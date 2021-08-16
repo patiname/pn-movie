@@ -65,7 +65,7 @@ export const Content = ({ title, nowPlay }) => {
         {nowPlay &&
           nowPlay.map((play) => (
             <SwiperSlide key={play.id}>
-              <Link to={{ pathname: "#" }}>
+              <Link to={{ pathname: `/detail/${play.id}` }}>
                 <CoverImg
                   style={{
                     backgroundImage: `url(https://image.tmdb.org/t/p/original${play.backdrop_path})`,

@@ -11,6 +11,7 @@ export const Home = () => {
   const [nowPlay, setNowPlay] = useState();
   const [pop, setPop] = useState();
   const [coming, setComing] = useState();
+  const [rated, setRated] = useState();
   const [loading, setLoading] = useState(true);
   const [pageError, setPageError] = useState(false);
 
@@ -32,6 +33,11 @@ export const Home = () => {
         } = await moviesApi.upcoming();
         setComing(coming);
 
+        const {
+          data: { results: topRated },
+        } = await moviesApi.top_rated();
+        setRated(topRated);
+
         setLoading(false);
       } catch (error) {
         setPageError(true);
@@ -41,9 +47,10 @@ export const Home = () => {
     movieData();
   }, []);
 
-  console.log("현재상영", nowPlay);
+  // console.log("현재상영", nowPlay);
   // console.log("인기", pop);
   // console.log("상영예정", coming);
+  console.log("순위", rated);
 
   return (
     <div>
@@ -55,12 +62,13 @@ export const Home = () => {
             <PageError />
           ) : (
             <div>
-              {pop ? <Main pop={pop[3]} /> : null}
+              {pop ? <Main pop={pop[0]} /> : null}
 
               <Section>
                 <Content title="현재 상영 영화" nowPlay={nowPlay} />
                 <Content title="상영 예정" nowPlay={coming} />
                 <Content title="인기 영화" nowPlay={pop} />
+                <Content title="인기 영화" nowPlay={rated} />
               </Section>
 
               <Footer />
