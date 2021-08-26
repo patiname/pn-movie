@@ -4,11 +4,13 @@ import { Detail } from "./routes/Detail/Detail";
 import { GlobalStyles } from "./Globalstyle";
 import { Header } from "./components/Header";
 import { Search } from "./routes/Search/Search";
+import { ScrollMove } from "./components/ScrollMove";
 
 function App() {
   return (
     <Router>
       <GlobalStyles />
+      <ScrollMove />
       <Header />
       <Switch>
         <Route path="/" exact>

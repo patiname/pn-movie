@@ -15,8 +15,13 @@ const Container = styled.div`
 const CoverImg = styled.iframe`
   width: 45%;
   height: 70vh;
-  /* background-size: cover;
-  background-position: center; */
+  background-size: cover;
+  background-position: center;
+`;
+
+const Video = styled.iframe`
+  width: 45%;
+  height: 70vh;
 `;
 
 const ConWrap = styled.div`
@@ -41,6 +46,15 @@ const ListWrap = styled.div`
 
 const List = styled.h4``;
 
+const RunTime = styled.h4``;
+
+const Desc = styled.p`
+  margin-top: 50px;
+  font-size: 20px;
+  line-height: 30px;
+  opacity: 0.7;
+`;
+
 export const Detail = () => {
   const { movieId } = useParams();
   const [details, setDetils] = useState();
@@ -57,7 +71,8 @@ export const Detail = () => {
         const {
           data: { results: videoData },
         } = await moviesApi.video(movieId);
-        setVideo(videoData[0].key);
+        // setVideo(videoData[0].key );
+        // console.log(videoData.length > 0 ? null : videoData[0].key);
       };
       setLoading(false);
       detailData();
@@ -80,28 +95,28 @@ export const Detail = () => {
             <Section>
               {details ? (
                 <Container>
-                  {/* <CoverImg
+                  <CoverImg
                     style={{
                       backgroundImage: `url(https://image.tmdb.org/t/p/original/${details.backdrop_path})`,
                     }}
-                  /> */}
-                  <CoverImg
+                  />
+                  {/* <Video
                     src={`https://www.youtube.com/embed/${video}`}
                     title="YouTube video player"
                     frameborder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowfullscreen
-                  ></CoverImg>
-
+                  /> */}
                   <ConWrap>
                     <Title>{details.title}</Title>
                     <ListWrap>
                       장르:
-                      {details.genres.map((genre) => (
-                        <List>&nbsp;&nbsp;{genre.name}, </List>
+                      {details.genres.map((genre, index) => (
+                        <List key={index}>&nbsp;&nbsp;{genre.name}, </List>
                       ))}
                     </ListWrap>
-                    런타임, 개봉일, 오버뷰
+                    <RunTime>런타임: {details.runtime}</RunTime>
+                    <Desc>{details.overview}</Desc>
                   </ConWrap>
                 </Container>
               ) : null}
