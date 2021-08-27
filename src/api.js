@@ -15,4 +15,10 @@ export const moviesApi = {
   top_rated: () => api.get("movie/top_rated"),
   detail: (id) => api.get(`movie/${id}`),
   video: (id) => api.get(`movie/${id}/videos`),
+  search: (term) =>
+    api.get("search/movie", {
+      params: {
+        query: term,
+      },
+    }),
 };

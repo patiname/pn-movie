@@ -5,11 +5,15 @@ import { moviesApi } from "../../api";
 import { PageLoading } from "../../components/PageLoading";
 import { Section } from "../../components/Section";
 import { PageError } from "../Home/PageError";
+import { Helmet } from "react-helmet-async";
 
 const Container = styled.div`
   padding-top: 150px;
   display: flex;
   justify-content: space-between;
+  @media screen and (max-width: 500px) {
+    flex-direction: column;
+  }
 `;
 
 const CoverImg = styled.iframe`
@@ -17,11 +21,17 @@ const CoverImg = styled.iframe`
   height: 70vh;
   background-size: cover;
   background-position: center;
+  @media screen and (max-width: 500px) {
+    width: 100%;
+  }
 `;
 
 const Video = styled.iframe`
   width: 45%;
   height: 70vh;
+  @media screen and (max-width: 500px) {
+    width: 100%;
+  }
 `;
 
 const ConWrap = styled.div`
@@ -29,12 +39,18 @@ const ConWrap = styled.div`
   display: flex;
   flex-direction: column;
   padding-top: 50px;
+  @media screen and (max-width: 500px) {
+    width: 100%;
+  }
 `;
 
 const Title = styled.div`
   font-size: 70px;
   font-weight: 700;
   margin-bottom: 30px;
+  @media screen and (max-width: 500px) {
+    font-size: 40px;
+  }
 `;
 
 const ListWrap = styled.div`
@@ -42,6 +58,17 @@ const ListWrap = styled.div`
   font-size: 20px;
   font-weight: 500;
   margin-bottom: 15px;
+  @media screen and (max-width: 500px) {
+    font-size: 16px;
+  }
+`;
+
+const ReleaseDate = styled.h4`
+  font-size: 20px;
+  margin-bottom: 15px;
+  @media screen and (max-width: 500px) {
+    font-size: 16px;
+  }
 `;
 
 const List = styled.h4``;
@@ -53,6 +80,9 @@ const Desc = styled.p`
   font-size: 20px;
   line-height: 30px;
   opacity: 0.7;
+  @media screen and (max-width: 500px) {
+    font-size: 16px;
+  }
 `;
 
 export const Detail = () => {
@@ -71,8 +101,8 @@ export const Detail = () => {
         const {
           data: { results: videoData },
         } = await moviesApi.video(movieId);
-        // setVideo(videoData[0].key );
-        // console.log(videoData.length > 0 ? null : videoData[0].key);
+        // setVideo(videoData[0].key);
+        videoData.length > 0 ? setVideo(videoData[0].key) : setVideo("");
       };
       setLoading(false);
       detailData();
@@ -85,6 +115,9 @@ export const Detail = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>PN movie | 영화 상세 보기</title>
+      </Helmet>
       {loading ? (
         <PageLoading />
       ) : (
@@ -95,20 +128,25 @@ export const Detail = () => {
             <Section>
               {details ? (
                 <Container>
-                  <CoverImg
-                    style={{
-                      backgroundImage: `url(https://image.tmdb.org/t/p/original/${details.backdrop_path})`,
-                    }}
-                  />
-                  {/* <Video
-                    src={`https://www.youtube.com/embed/${video}`}
-                    title="YouTube video player"
-                    frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen
-                  /> */}
+                  {video === "" ? (
+                    <CoverImg
+                      style={{
+                        backgroundImage: `url(https://image.tmdb.org/t/p/original/${details.backdrop_path})`,
+                      }}
+                    />
+                  ) : (
+                    <Video
+                      src={`https://www.youtube.com/embed/${video}`}
+                      title="YouTube video player"
+                      frameborder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowfullscreen
+                    />
+                  )}
+
                   <ConWrap>
                     <Title>{details.title}</Title>
+                    <ReleaseDate>{details.release_date}</ReleaseDate>
                     <ListWrap>
                       장르:
                       {details.genres.map((genre, index) => (

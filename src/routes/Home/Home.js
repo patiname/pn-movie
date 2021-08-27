@@ -68,7 +68,7 @@ export const Home = () => {
                 <Content title="현재 상영 영화" nowPlay={nowPlay} />
                 <Content title="상영 예정" nowPlay={coming} />
                 <Content title="인기 영화" nowPlay={pop} />
-                <Content title="인기 영화" nowPlay={rated} />
+                <Content title="영화 순위" nowPlay={rated} />
               </Section>
 
               <Footer />
