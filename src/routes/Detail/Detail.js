@@ -5,7 +5,9 @@ import { moviesApi } from "../../api";
 import { PageLoading } from "../../components/PageLoading";
 import { Section } from "../../components/Section";
 import { PageError } from "../Home/PageError";
-import { Helmet } from "react-helmet-async";
+import { PageTitle } from "../../components/PageTitle";
+import { CoverVideo } from "./CoverVideo";
+import { DetailCon } from "./DetailCon";
 
 const Container = styled.div`
   padding-top: 150px;
@@ -13,75 +15,6 @@ const Container = styled.div`
   justify-content: space-between;
   @media screen and (max-width: 500px) {
     flex-direction: column;
-  }
-`;
-
-const CoverImg = styled.iframe`
-  width: 45%;
-  height: 70vh;
-  background-size: cover;
-  background-position: center;
-  @media screen and (max-width: 500px) {
-    width: 100%;
-  }
-`;
-
-const Video = styled.iframe`
-  width: 45%;
-  height: 70vh;
-  @media screen and (max-width: 500px) {
-    width: 100%;
-  }
-`;
-
-const ConWrap = styled.div`
-  width: 50%;
-  display: flex;
-  flex-direction: column;
-  padding-top: 50px;
-  @media screen and (max-width: 500px) {
-    width: 100%;
-  }
-`;
-
-const Title = styled.div`
-  font-size: 70px;
-  font-weight: 700;
-  margin-bottom: 30px;
-  @media screen and (max-width: 500px) {
-    font-size: 40px;
-  }
-`;
-
-const ListWrap = styled.div`
-  display: flex;
-  font-size: 20px;
-  font-weight: 500;
-  margin-bottom: 15px;
-  @media screen and (max-width: 500px) {
-    font-size: 16px;
-  }
-`;
-
-const ReleaseDate = styled.h4`
-  font-size: 20px;
-  margin-bottom: 15px;
-  @media screen and (max-width: 500px) {
-    font-size: 16px;
-  }
-`;
-
-const List = styled.h4``;
-
-const RunTime = styled.h4``;
-
-const Desc = styled.p`
-  margin-top: 50px;
-  font-size: 20px;
-  line-height: 30px;
-  opacity: 0.7;
-  @media screen and (max-width: 500px) {
-    font-size: 16px;
   }
 `;
 
@@ -111,13 +44,11 @@ export const Detail = () => {
     }
   }, []);
 
-  console.log(details);
+  // console.log(details);
 
   return (
     <div>
-      <Helmet>
-        <title>PN movie | 영화 상세 보기</title>
-      </Helmet>
+      <PageTitle title={details && details.title} />
       {loading ? (
         <PageLoading />
       ) : (
@@ -128,23 +59,18 @@ export const Detail = () => {
             <Section>
               {details ? (
                 <Container>
-                  {video === "" ? (
-                    <CoverImg
-                      style={{
-                        backgroundImage: `url(https://image.tmdb.org/t/p/original/${details.backdrop_path})`,
-                      }}
-                    />
-                  ) : (
-                    <Video
-                      src={`https://www.youtube.com/embed/${video}`}
-                      title="YouTube video player"
-                      frameborder="0"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowfullscreen
-                    />
-                  )}
+                  {console.log(details?.backdrop_path)}
+                  <CoverVideo video={video} img={details?.backdrop_path} />
 
-                  <ConWrap>
+                  <DetailCon
+                    title={details.title}
+                    release_date={details.release_date}
+                    genres={details.genres}
+                    runtime={details.runtime}
+                    overview={details.overview}
+                  />
+
+                  {/* <ConWrap>
                     <Title>{details.title}</Title>
                     <ReleaseDate>{details.release_date}</ReleaseDate>
                     <ListWrap>
@@ -155,7 +81,7 @@ export const Detail = () => {
                     </ListWrap>
                     <RunTime>런타임: {details.runtime}</RunTime>
                     <Desc>{details.overview}</Desc>
-                  </ConWrap>
+                  </ConWrap> */}
                 </Container>
               ) : null}
             </Section>
