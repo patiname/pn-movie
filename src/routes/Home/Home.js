@@ -5,7 +5,6 @@ import { PageLoading } from "../../components/PageLoading";
 import { Main } from "./Main";
 import { PageError } from "./PageError";
 import { Content } from "./Content";
-import { Footer } from "../../components/Footer";
 
 export const Home = () => {
   const [nowPlay, setNowPlay] = useState();
@@ -70,8 +69,6 @@ export const Home = () => {
                 <Content title="인기 영화" nowPlay={pop} />
                 <Content title="영화 순위" nowPlay={rated} />
               </Section>
-
-              <Footer />
             </div>
           )}
         </div>

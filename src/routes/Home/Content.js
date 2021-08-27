@@ -68,7 +68,13 @@ export const Content = ({ title, nowPlay }) => {
               <Link to={{ pathname: `/detail/${play.id}` }}>
                 <CoverImg
                   style={{
-                    backgroundImage: `url(https://image.tmdb.org/t/p/original${play.backdrop_path})`,
+                    backgroundImage: `url(
+                      ${
+                        play.backdrop_path
+                          ? `https://image.tmdb.org/t/p/original${play.backdrop_path}`
+                          : "https://lh3.googleusercontent.com/proxy/V0cX7SAg4hmNDX9UMS2tlg9Wfhad9uzZ0UHiG9Pp6hKyIJ2NAItmZbSdp78ASTe9-rF2VR3Yqf_D6_RKZeADJxsE0CrXDKY3a2lANeSRoqpEYbRrd-dbCodOyA90RExx3i1QcXJLYx_e"
+                      }
+                    )`,
                   }}
                 />
                 <MovieTitle>{play.title}</MovieTitle>
