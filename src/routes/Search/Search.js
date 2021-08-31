@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { moviesApi } from "../../api";
 import { PageLoading } from "../../components/PageLoading";
@@ -98,18 +99,20 @@ export const Search = () => {
                 ) : (
                   searchResult &&
                   searchResult.map((term) => (
-                    <Con key={term.id}>
-                      <Bg
-                        style={{
-                          background: `url(${
-                            term.backdrop_path
-                              ? `https://image.tmdb.org/t/p/original${term.backdrop_path}`
-                              : "https://i.ytimg.com/vi/5SuveFZ5_H0/maxresdefault.jpg"
-                          }) center / cover`,
-                        }}
-                      />
-                      <Title>{term.title}</Title>
-                    </Con>
+                    <Link to={`/detail/${term.id}`}>
+                      <Con key={term.id}>
+                        <Bg
+                          style={{
+                            background: `url(${
+                              term.backdrop_path
+                                ? `https://image.tmdb.org/t/p/original${term.backdrop_path}`
+                                : "https://i.ytimg.com/vi/5SuveFZ5_H0/maxresdefault.jpg"
+                            }) center / cover`,
+                          }}
+                        />
+                        <Title>{term.title}</Title>
+                      </Con>
+                    </Link>
                   ))
                 )}
               </SearchWrap>
