@@ -52,6 +52,7 @@ const Title = styled.h3`
 
 export const Search = () => {
   const [searchResult, setSearchResult] = useState();
+  const [noSearch, setNoSearch] = useState("");
   const [pageError, setPageError] = useState(false);
   const [loading, setLoading] = useState(true);
 
@@ -66,7 +67,14 @@ export const Search = () => {
       const {
         data: { results },
       } = await moviesApi.search(term);
-      setSearchResult(results);
+
+      if (results.length <= 0) {
+        setNoSearch("검색결과가 없습니다 🤔");
+      } else {
+        setNoSearch("");
+        setSearchResult(results);
+      }
+
       setLoading(false);
     } catch (error) {
       setPageError(true);
@@ -97,23 +105,29 @@ export const Search = () => {
                 {searchResult && loading ? (
                   <PageLoading />
                 ) : (
-                  searchResult &&
-                  searchResult.map((term) => (
-                    <Link to={`/detail/${term.id}`}>
-                      <Con key={term.id}>
-                        <Bg
-                          style={{
-                            background: `url(${
-                              term.backdrop_path
-                                ? `https://image.tmdb.org/t/p/original${term.backdrop_path}`
-                                : "https://i.ytimg.com/vi/5SuveFZ5_H0/maxresdefault.jpg"
-                            }) center / cover`,
-                          }}
-                        />
-                        <Title>{term.title}</Title>
-                      </Con>
-                    </Link>
-                  ))
+                  <>
+                    {noSearch === "" ? (
+                      searchResult &&
+                      searchResult.map((term) => (
+                        <Link key={term.id} to={`/detail/${term.id}`}>
+                          <Con>
+                            <Bg
+                              style={{
+                                background: `url(${
+                                  term.backdrop_path
+                                    ? `https://image.tmdb.org/t/p/original${term.backdrop_path}`
+                                    : "https://i.ytimg.com/vi/5SuveFZ5_H0/maxresdefault.jpg"
+                                }) center / cover`,
+                              }}
+                            />
+                            <Title>{term.title}</Title>
+                          </Con>
+                        </Link>
+                      ))
+                    ) : (
+                      <h1>{noSearch}</h1>
+                    )}
+                  </>
                 )}
               </SearchWrap>
             </>
