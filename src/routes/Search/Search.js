@@ -6,6 +6,7 @@ import { moviesApi } from "../../api";
 import { PageLoading } from "../../components/PageLoading";
 import { Section } from "../../components/Section";
 import { PageError } from "../Home/PageError";
+import { PageTitle } from "../../components/PageTitle";
 
 const Container = styled.div`
   margin-top: 150px;
@@ -81,10 +82,9 @@ export const Search = () => {
     }
   };
 
-  console.log(searchResult);
-
   return (
     <div>
+      <PageTitle title={"검색"} />
       <Section>
         <Container>
           <Form onSubmit={handleSubmit(onSubmit)}>

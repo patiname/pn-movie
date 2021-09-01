@@ -49,7 +49,7 @@ export const Home = () => {
   // console.log("현재상영", nowPlay);
   // console.log("인기", pop);
   // console.log("상영예정", coming);
-  console.log("순위", rated);
+  // console.log("순위", rated);
 
   return (
     <div>

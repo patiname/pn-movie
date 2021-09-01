@@ -34,7 +34,6 @@ export const Detail = () => {
         const {
           data: { results: videoData },
         } = await moviesApi.video(movieId);
-        // setVideo(videoData[0].key);
         videoData.length > 0 ? setVideo(videoData[0].key) : setVideo("");
       };
       setLoading(false);
@@ -42,9 +41,7 @@ export const Detail = () => {
     } catch (error) {
       setPageError(true);
     }
-  }, []);
-
-  // console.log(details);
+  }, [movieId]);
 
   return (
     <div>
@@ -59,7 +56,6 @@ export const Detail = () => {
             <Section>
               {details ? (
                 <Container>
-                  {console.log(details?.backdrop_path)}
                   <CoverVideo video={video} img={details?.backdrop_path} />
 
                   <DetailCon
@@ -69,19 +65,6 @@ export const Detail = () => {
                     runtime={details.runtime}
                     overview={details.overview}
                   />
-
-                  {/* <ConWrap>
-                    <Title>{details.title}</Title>
-                    <ReleaseDate>{details.release_date}</ReleaseDate>
-                    <ListWrap>
-                      장르:
-                      {details.genres.map((genre, index) => (
-                        <List key={index}>&nbsp;&nbsp;{genre.name}, </List>
-                      ))}
-                    </ListWrap>
-                    <RunTime>런타임: {details.runtime}</RunTime>
-                    <Desc>{details.overview}</Desc>
-                  </ConWrap> */}
                 </Container>
               ) : null}
             </Section>
