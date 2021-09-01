@@ -39,7 +39,7 @@
       "react-app/jest"
     ]
   },
-  "homepage": "https://patiname.github.io/pn-movie/",
+  "homepage": "https://pnmovie.netlify.app/",
   "browserslist": {
     "production": [
       ">0.2%",
