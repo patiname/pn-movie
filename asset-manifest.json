@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.css": "/pati-movie/static/css/main.008fefc1.chunk.css",
-    "main.js": "/pati-movie/static/js/main.128ef3a3.chunk.js",
-    "main.js.map": "/pati-movie/static/js/main.128ef3a3.chunk.js.map",
-    "runtime-main.js": "/pati-movie/static/js/runtime-main.192dd964.js",
-    "runtime-main.js.map": "/pati-movie/static/js/runtime-main.192dd964.js.map",
-    "static/js/2.83a8d8f6.chunk.js": "/pati-movie/static/js/2.83a8d8f6.chunk.js",
-    "static/js/2.83a8d8f6.chunk.js.map": "/pati-movie/static/js/2.83a8d8f6.chunk.js.map",
-    "index.html": "/pati-movie/index.html",
-    "static/css/main.008fefc1.chunk.css.map": "/pati-movie/static/css/main.008fefc1.chunk.css.map",
-    "static/js/2.83a8d8f6.chunk.js.LICENSE.txt": "/pati-movie/static/js/2.83a8d8f6.chunk.js.LICENSE.txt"
+    "main.css": "/pn-movie/static/css/main.008fefc1.chunk.css",
+    "main.js": "/pn-movie/static/js/main.128ef3a3.chunk.js",
+    "main.js.map": "/pn-movie/static/js/main.128ef3a3.chunk.js.map",
+    "runtime-main.js": "/pn-movie/static/js/runtime-main.30c0dc67.js",
+    "runtime-main.js.map": "/pn-movie/static/js/runtime-main.30c0dc67.js.map",
+    "static/js/2.3061640d.chunk.js": "/pn-movie/static/js/2.3061640d.chunk.js",
+    "static/js/2.3061640d.chunk.js.map": "/pn-movie/static/js/2.3061640d.chunk.js.map",
+    "index.html": "/pn-movie/index.html",
+    "static/css/main.008fefc1.chunk.css.map": "/pn-movie/static/css/main.008fefc1.chunk.css.map",
+    "static/js/2.3061640d.chunk.js.LICENSE.txt": "/pn-movie/static/js/2.3061640d.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.192dd964.js",
-    "static/js/2.83a8d8f6.chunk.js",
+    "static/js/runtime-main.30c0dc67.js",
+    "static/js/2.3061640d.chunk.js",
     "static/css/main.008fefc1.chunk.css",
     "static/js/main.128ef3a3.chunk.js"
   ]
